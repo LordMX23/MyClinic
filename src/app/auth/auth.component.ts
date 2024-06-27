@@ -8,6 +8,6 @@ import { RouterModule } from '@angular/router';
   templateUrl: './auth.component.html',
   styles: ``
 })
-export class AuthComponent {
+export default class AuthComponent {
 
 }

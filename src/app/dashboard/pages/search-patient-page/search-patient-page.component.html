@@ -1,1 +1,14 @@
-<p>search-patient-page works!</p>
+<br>
+<h1>Pacientes</h1>
+<hr>
+<!-- <button mat-flat-button color="primary">Agregar Paciente</button> -->
+<button mat-raised-button color="primary" (click)="openBottomSheetPatientAdd()">Agregar Paciente</button>
+<hr>
+
+@if(patientData() == null){
+    Loading ...
+}@else{
+    <app-patient-list-component [patientData]="patientData()!"/>
+}
+
+<!-- <app-patient-add-component/> -->

@@ -25,7 +25,7 @@ export class AppComponent {
     return true;
   });
 
-   // Disparamos un efecto, cada vez que una senial en el efecto cambie
+  // Disparamos un efecto, cada vez que una senial en el efecto cambie
   // en este caso this.authService.authStatus()
   public authStatusChangedEffect = effect(() => {
 
@@ -40,7 +40,9 @@ export class AppComponent {
       case AuthStatus.notAuthenticated:
         this.router.navigateByUrl('/auth/login');
         return
+
     }
+
   });
 
 }

@@ -1,0 +1,71 @@
+<h1 class="flex justify-content-center flex-wrap">Datos de la cita</h1>
+
+<!-- <mat-divider class="mb-2"></mat-divider> -->
+
+<div class="grid">
+
+    <div class="col-12">
+        <form class="grid" [formGroup]="appointmentFB" (ngSubmit)="onSubmit()">
+
+            <mat-card class="col-12 md:col-6">
+                <!-- <mat-card-title class="flex justify-content-center flex-wrap">Generales del Paciente</mat-card-title> -->
+                <mat-card-content>
+
+                    <!-- <mat-form-field class="col-12">
+                        <mat-label>Medico.</mat-label>
+                        <input matInput type="text" required [formControl]="appointmentFB.controls.medicId" />
+                    </mat-form-field> -->
+                    <mat-form-field class="col-12">
+                        <mat-label>Medico.</mat-label>
+                        <mat-select [formControl]="appointmentFB.controls.medicId">
+                          @for (medic of medics; track medic) {
+                            <mat-option [value]="medic.medicId">{{medic.firstName}} {{medic.lastName}} {{medic.motherLastName}}</mat-option>
+                          }
+                        </mat-select>
+                        <span CustomValidatorLabel
+                            [errors]="appointmentFB.get('medicId')?.errors"
+                            [touched]="appointmentFB.get('medicId')!.touched"
+                        ></span>
+                      </mat-form-field>
+
+                    <mat-form-field class="col-12">
+                        <mat-label>Fecha.</mat-label>
+                        <input matInput [matDatepickerFilter]="myFilter"  [matDatepicker]="picker" type="text"
+                            [formControl]="appointmentFB.controls.appointmentDate">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <span CustomValidatorLabel
+                            [errors]="appointmentFB.get('appointmentDate')?.errors"
+                            [touched]="appointmentFB.get('appointmentDate')!.touched"
+                        ></span>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-12">
+                        <mat-label>Hora.</mat-label>
+                        <input matInput type="text" required [formControl]="appointmentFB.controls.appointmentHour" />
+                        <span CustomValidatorLabel
+                            [errors]="appointmentFB.get('appointmentHour')?.errors"
+                            [touched]="appointmentFB.get('appointmentHour')!.touched"
+                        ></span>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-12">
+                        <mat-label>Motivo.</mat-label>
+                        <input matInput type="text" required [formControl]="appointmentFB.controls.reason" />
+                        <span CustomValidatorLabel
+                            [errors]="appointmentFB.get('reason')?.errors"
+                            [touched]="appointmentFB.get('reason')!.touched"
+                        ></span>
+                    </mat-form-field>
+                </mat-card-content>
+            </mat-card>
+            <br><br>
+        </form>
+        <div class="flex justify-content-between">
+            <button mat-flat-button color="primary" (click)="onSubmit()">
+                Guardar
+            </button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,129 @@
+<!-- {{patientFB.controls.birthdate.value }} -->
+<h1 class="flex justify-content-center flex-wrap" style="text-align: center;">Datos del Paciente</h1>
+
+<mat-divider class="mb-2"></mat-divider>
+
+<div class="grid">
+
+    <div class="col-12">
+        <form class="grid" [formGroup]="patientFB" (ngSubmit)="onSubmit()">
+
+            <mat-card class="col-12 md:col-6">
+                <mat-card-title class="flex justify-content-center flex-wrap">Generales del Paciente</mat-card-title>
+                <mat-card-content>
+
+                    <mat-form-field class="col-12">
+                        <mat-label>Nombre.</mat-label>
+                        <input matInput type="text" required [formControl]="patientFB.controls.name" />
+                        <span CustomValidatorLabel
+                            [errors]="patientFB.get('name')?.errors"
+                            [touched]="patientFB.get('name')!.touched"
+                        ></span>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-12">
+                        <mat-label>Apellido Paterno.</mat-label>
+                        <input matInput type="text" required [formControl]="patientFB.controls.lastName" />
+                        <span CustomValidatorLabel
+                            [errors]="patientFB.get('lastName')?.errors"
+                            [touched]="patientFB.get('lastName')!.touched"
+                        ></span>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-12">
+                        <mat-label>Apellido Materno.</mat-label>
+                        <input matInput type="text" required [formControl]="patientFB.controls.motherLastName" />
+                        <span CustomValidatorLabel
+                            [errors]="patientFB.get('motherLastName')?.errors"
+                            [touched]="patientFB.get('motherLastName')!.touched"
+                        ></span>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-12">
+                        <mat-label>Fecha de Nacimiento.</mat-label>
+                        <input matInput [matDatepicker]="picker" [formControl]="patientFB.controls.birthdate" >
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <span CustomValidatorLabel
+                            [errors]="patientFB.get('birthdate')?.errors"
+                            [touched]="patientFB.get('birthdate')!.touched"
+                        ></span>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-12">
+                        <mat-label>Genero.</mat-label>
+                        <mat-select required [formControl]="patientFB.controls.gender">
+                            <mat-option *ngFor="let genero of generos" [value]="genero.id">
+                                {{ genero.desc }}
+                            </mat-option>
+                        </mat-select>
+                        <span CustomValidatorLabel
+                            [errors]="patientFB.get('gender')?.errors"
+                            [touched]="patientFB.get('gender')!.touched"
+                        ></span>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-12">
+                        <mat-label>Telefono.</mat-label>
+                        <input matInput type="text" required [formControl]="patientFB.controls.phone" />
+                        <span CustomValidatorLabel
+                            [errors]="patientFB.get('phone')?.errors"
+                            [touched]="patientFB.get('phone')!.touched"
+                        ></span>
+                    </mat-form-field>
+                </mat-card-content>
+            </mat-card>
+<br><br>
+            <mat-card [formGroup]="patientResidency" class="col-12 md:col-6">
+                <mat-card-title class="flex justify-content-center flex-wrap">Domicilio del Paciente</mat-card-title>
+                <mat-card-content>
+
+                    <mat-form-field class="col-12">
+                        <mat-label>Domicilio.</mat-label>
+                        <input matInput type="text" required formControlName="address" />
+                        <span CustomValidatorLabel
+                            [errors]="patientResidency.get('address')?.errors"
+                            [touched]="patientResidency.get('address')!.touched"
+                        ></span>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-12">
+                        <mat-label>Codigo Postal.</mat-label>
+                        <input matInput type="text" required formControlName="postalCode" />
+                        <span CustomValidatorLabel
+                            [errors]="patientResidency.get('postalCode')?.errors"
+                            [touched]="patientResidency.get('postalCode')!.touched"
+                        ></span>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-12">
+                        <mat-label>Ciudad.</mat-label>
+                        <input matInput type="text" required formControlName="city" />
+                        <span CustomValidatorLabel
+                            [errors]="patientResidency.get('city')?.errors"
+                            [touched]="patientResidency.get('city')!.touched"
+                        ></span>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-12">
+                        <mat-label>Estado.</mat-label>
+                        <input matInput type="text" required formControlName="state" />
+                        <span CustomValidatorLabel
+                            [errors]="patientResidency.get('state')?.errors"
+                            [touched]="patientResidency.get('state')!.touched"
+                        ></span>
+                    </mat-form-field>
+                </mat-card-content>
+            </mat-card>
+
+        </form>
+        <div class="flex justify-content-between">
+            <button mat-flat-button color="primary" (click)="onSubmit()">
+                Guardar
+            </button>
+        </div>
+    </div>
+    
+</div>
+
+

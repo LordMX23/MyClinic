@@ -1,1 +1,10 @@
-<p>home-page works!</p>
+<hr>
+<h1 style="text-align: center;">Bienvenido</h1>
+<hr>
+<!-- <h2 style="text-align: center;">Citas</h2>
+<hr> -->
+@if(PatientMedicalAppointment() == null){
+    Loading ...
+}@else{
+    <app-patient-appointment-list-component [patientAppointment]="PatientMedicalAppointment()!"/>
+}

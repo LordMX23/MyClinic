@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2'
+import { CustomValidatorLabelDirective } from '../../../shared/directives/custom-validator-label.directive';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CustomValidatorLabelDirective],
   templateUrl: './login-page.component.html',
   styles: `
   .gradient-custom {
@@ -22,37 +23,37 @@ background: linear-gradient(to right, rgba(63,81,181, 1), rgba(63,81,181, 1))
 }
   `
 })
-export class LoginPageComponent {
+export default class LoginPageComponent {
 
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
 
+  
+
   public myForm: FormGroup = this.fb.group({
-    email: ['pc@pc.com', [Validators.required, Validators.email]],
-    password: ['Qwert123+', [Validators.required, Validators.minLength(6)]]
+    email:    ['',[Validators.required, Validators.email]],
+    password: ['',[Validators.required, Validators.minLength(6)]]
   });
 
-  login() {
+  login(){
+    if(this.myForm.valid){
+      const {email, password} =this.myForm.value;
     
-    if (this.myForm.invalid) {
-      this.myForm.markAllAsTouched();
-      return;
+
+    this.authService.login(email,password)
+    .subscribe({
+      next: ()=> this.router.navigateByUrl('/dashboard'),
+      error: (error)=> {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: error,
+        })
+      }
+    });
+
     }
-
-    const { email, password } = this.myForm.value;
-
-    this.authService.login(email, password)
-      .subscribe({
-        next: () => this.router.navigateByUrl('/dashboard'),
-        error: (error) => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Error!',
-            text: error,
-          })
-        }
-      });
   }
 
 }

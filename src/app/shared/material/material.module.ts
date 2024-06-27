@@ -17,12 +17,22 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatPaginatorModule} from '@angular/material/paginator';
-import { MatTableModule} from '@angular/material/table';
+import {  MatTableModule} from '@angular/material/table';
+import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
+import {
+  MatBottomSheet,
+  MatBottomSheetModule,
+  MatBottomSheetRef,
+} from '@angular/material/bottom-sheet';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
-  declarations: [],
-  imports: [],
+  providers: [
+    provideNativeDateAdapter(),
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
+    ],
   exports: [
     MatAutocompleteModule,
     MatButtonModule,
@@ -42,6 +52,10 @@ import { MatTableModule} from '@angular/material/table';
     MatSlideToggleModule,
     MatPaginatorModule,
     MatTableModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    MatBottomSheetModule,
+    MatDividerModule,
   ]
 })
 export class MaterialModule { }

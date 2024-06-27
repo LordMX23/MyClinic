@@ -7,12 +7,12 @@ export const routes: Routes = [
     {
         path: 'auth',
         canActivate: [isNotAuthenticatedGuard],
-        loadComponent: () => import('./auth/auth.component').then(c => c.AuthComponent),
+        loadComponent: () => import('./auth/auth.component'),
         children:[
             {
                 path: 'login',
                 title: 'title',
-                loadComponent: () => import('./auth/pages/login-page/login-page.component').then(c => c.LoginPageComponent),
+                loadComponent: () => import('./auth/pages/login-page/login-page.component'),
             },
             {
                 path: '',
@@ -24,17 +24,17 @@ export const routes: Routes = [
     {
         path: 'dashboard',
         canActivate: [isAuthenticatedGuard],
-        loadComponent: () => import('./dashboard/dashboard.component').then(c => c.DashboardComponent),
+        loadComponent: () => import('./dashboard/dashboard.component'),
         children: [
             {
                 path: 'home',
                 title: 'home',
-                loadComponent: () => import('./dashboard/pages/home-page/home-page.component').then(c => c.HomePageComponent),
+                loadComponent: () => import('./dashboard/pages/home-page/home-page.component'),
             },
             {
                 path: 'search',
                 title: 'search',
-                loadComponent: () => import('./dashboard/pages/search-patient-page/search-patient-page.component').then(c => c.SearchPatientPageComponent),
+                loadComponent: () => import('./dashboard/pages/search-patient-page/search-patient-page.component'),
             },
             {
                 path: '',
